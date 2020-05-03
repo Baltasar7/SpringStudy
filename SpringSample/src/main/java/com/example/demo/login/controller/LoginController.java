@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class LoginController {
+	@GetMapping("/")
+	public String getIndex() {
+		return "redirect:/login";
+	}
+
 	@GetMapping("/login")
 	public String getLogin(Model model) {
 		return "login/login";
@@ -14,6 +19,6 @@ public class LoginController {
 
 	@PostMapping("/login")
 	public String postLogin(Model model) {
-		return "login/login";
+		return "redirect:/home";
 	}
 }
