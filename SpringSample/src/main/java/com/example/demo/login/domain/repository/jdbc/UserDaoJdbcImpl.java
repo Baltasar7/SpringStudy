@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.login.domain.model.User;
 import com.example.demo.login.domain.repository.UserDao;
 
-@Repository
+@Repository("UserDaoJdbcImpl")
 public class UserDaoJdbcImpl implements UserDao {
 	@Autowired
 	JdbcTemplate jdbc;
@@ -116,7 +116,8 @@ public class UserDaoJdbcImpl implements UserDao {
 
 	@Override
 	public void userCsvOut() throws DataAccessException {
-		// TODO
+		String sql = "SELECT * FROM m_user";
+		UserRowCallbackHandler handler = new UserRowCallbackHandler();
+		jdbc.query(sql, handler);
 	}
-
 }
